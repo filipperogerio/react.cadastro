@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react'
 import './App.css'
 import FormularioCadastro from './components/FormularioCadastro/FormularioCadastro'
+import { Container } from '@material-ui/core'
 
 function App () {
   return (
-    <Fragment>
+    <Container component='article' maxWidth='sm'>
       <h1>Formulário de cadastro</h1>
       <FormularioCadastro />
-    </Fragment>
+    </Container>
   )
 }
 
