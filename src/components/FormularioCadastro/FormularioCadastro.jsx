@@ -4,11 +4,14 @@ import { Button, TextField, Switch, FormControlLabel } from '@material-ui/core'
 function FormularioCadastro () {
   const [nome, setNome] = useState('')
   const [sobrenome, setSobrenome] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [promocoes, setPromocoes] = useState(false)
+  const [novidades, setNovidades] = useState(false)
 
   const handleForm = e => {
     e.preventDefault()
 
-    console.log(nome, sobrenome)
+    console.log({ nome, sobrenome, cpf, promocoes, novidades })
   }
 
   return (
@@ -44,16 +47,37 @@ function FormularioCadastro () {
         variant='outlined'
         margin='normal'
         fullWidth
+        onChange={e => {
+          setCpf(e.target.value)
+        }}
       />
 
       <FormControlLabel
         label='promoções'
-        control={<Switch name='promocoes' color='primary' defaultChecked />}
+        control={
+          <Switch
+            name='promocoes'
+            color='primary'
+            checked={promocoes}
+            onChange={e => {
+              setPromocoes(e.target.checked)
+            }}
+          />
+        }
       />
 
       <FormControlLabel
         label='novidades'
-        control={<Switch name='novidades' color='primary' defaultChecked />}
+        control={
+          <Switch
+            name='novidades'
+            color='primary'
+            checked={novidades}
+            onChange={e => {
+              setNovidades(e.target.checked)
+            }}
+          />
+        }
       />
 
       <Button type='submit' variant='contained' color='primary'>
