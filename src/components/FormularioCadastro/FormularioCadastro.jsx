@@ -1,22 +1,56 @@
-import React, { useState } from 'react'
+import { Stepper, Typography, StepLabel, Step } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
 import DadosEntrega from './DadosEntrega'
 import DadosPessoais from './DadosPessoais'
 import DadosUsuario from './DadosUsuario'
 
 function FormularioCadastro ({ aoEnviar, validarCpf }) {
   const [estadoAtual, setEstadoAtual] = useState(0)
+  const [dadosFormulario, setDadosFormulario] = useState({})
 
   const formularios = [
-    <DadosUsuario aoEnviar={proximo} />,
-    <DadosPessoais aoEnviar={proximo} validarCpf={validarCpf} />,
-    <DadosEntrega aoEnviar={aoEnviar} />
+    <DadosUsuario aoEnviar={coletarDados} />,
+    <DadosPessoais aoEnviar={coletarDados} validarCpf={validarCpf} />,
+    <DadosEntrega aoEnviar={coletarDados} />,
+    <Typography variant='h5' align='center'>
+      Obrigado pelo Cadastro!!
+    </Typography>
   ]
+
+  useEffect(() => {
+    if (estadoAtual === formularios.length) {
+      aoEnviar(dadosFormulario)
+    }
+  })
+
+  function coletarDados (dados) {
+    setDadosFormulario({ ...dadosFormulario, ...dados })
+    proximo()
+  }
 
   function proximo () {
     setEstadoAtual(estadoAtual + 1)
   }
 
-  return <>{formularios[estadoAtual]}</>
+  return (
+    <>
+      <Stepper activeStep={estadoAtual}>
+        <Step>
+          <StepLabel>Login</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Usuario</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Entrega</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Finalização</StepLabel>
+        </Step>
+      </Stepper>
+      {formularios[estadoAtual]}
+    </>
+  )
 }
 
 export default FormularioCadastro
