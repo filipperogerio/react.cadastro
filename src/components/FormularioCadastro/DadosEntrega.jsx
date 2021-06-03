@@ -19,6 +19,7 @@ function DadosEntrega ({ aoEnviar }) {
         id='cep'
         label='CEP'
         type='number'
+        name='cep'
         variant='outlined'
         margin='normal'
         value={cep}
@@ -28,6 +29,7 @@ function DadosEntrega ({ aoEnviar }) {
         id='endereco'
         label='Enderço'
         type='text'
+        name='endereco'
         variant='outlined'
         margin='normal'
         fullWidth
@@ -38,6 +40,7 @@ function DadosEntrega ({ aoEnviar }) {
         id='numero'
         label='Numero'
         type='number'
+        name='numero'
         variant='outlined'
         margin='normal'
         value={numero}
@@ -47,6 +50,7 @@ function DadosEntrega ({ aoEnviar }) {
         id='estado'
         label='Estado'
         type='text'
+        name='estado'
         variant='outlined'
         margin='normal'
         value={estado}
@@ -56,6 +60,7 @@ function DadosEntrega ({ aoEnviar }) {
         id='cidade'
         label='Cidade'
         type='text'
+        name='cidade'
         variant='outlined'
         margin='normal'
         value={cidade}
